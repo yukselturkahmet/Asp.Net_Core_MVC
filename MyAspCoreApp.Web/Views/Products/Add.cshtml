@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Add";
+}
+@model ProductViewModel
+
+<h1>Ürün Ekleme</h1>
+
+
+
+<form asp-controller="Products" asp-action="Add" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Ürün Ad:</label>
+        <input class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label">Ürün Fiyat:</label>
+        <input class="form-control" asp-for="Price">
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Stock" class="form-label">Ürün Stok:</label>
+        <input type="number" class="form-control" asp-for="Stock">
+        <span asp-validation-for="Stock" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Color" class="form-label">Ürün Renk:</label>
+        <select class="form-select" asp-for="Color" asp-items="@ViewBag.ColorSelect">
+            <option value="">Lütfen bir renk seçiniz</option>
+        </select>
+        <span asp-validation-for="Color" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Ürün Açıklama:</label>
+        <textarea class="form-control" asp-for="Description" placeholder="Ürün Açıklama"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="IsPublished" class="form-label">Yayınlansın mı?:</label>
+        <input class="form-check-input" asp-for="IsPublished">
+        <span asp-validation-for="IsPublished" class="text-danger"></span>
+    </div>
+    <div class="mb-3 mt-3">
+        <span> Ürün satış süresi</span>
+        @foreach (var item in ViewBag.Expire as Dictionary<string, int>)
+        {
+            <div class="form-check">
+                <input class="form-check-input" type="radio" asp-for="Expire" id="@(item.Value)Expire" value="@item.Value" />
+                <label class="form-check-label" for="@(item.Value)Expire"> @item.Key</label>
+            </div>
+        }
+        <span asp-validation-for="Expire" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PublishDate" class="form-label">Ürün Yayınlanma Tarihi:</label>
+        <input class="form-control" asp-for="PublishDate">
+        <span asp-validation-for="PublishDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label for="formFileSm" class="form-label">Ürün Resim</label>
+        <input class="form-control form-control-sm" type="file" asp-for="Image">
+    </div>
+    
+    <div class="mb-3">
+        <label asp-for="Color" class="form-label">Kategoriler:</label>
+        <select class="form-select" asp-for="CategoryId" asp-items="@ViewBag.categorySelect">
+            <option value="">Lütfen bir kategori seçiniz</option>
+        </select>
+        <span asp-validation-for="Color" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Ürün Kaydet</button>
+</form>
+
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

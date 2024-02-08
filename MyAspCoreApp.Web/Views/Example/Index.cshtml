@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Example Controller, Index sayfası</h1>
+@*@model List<MyAspCoreApp.Web.Controllers.Product>*@
+@*@{
+    var name = ViewBag.name;
+    <p>@name</p>
+
+    var person = ViewBag.person;
+
+}
+
+<p>@name</p>
+
+<h2>@ViewBag.name</h2>
+
+<hr/>
+
+<p>Yaş: @ViewData["age"]</p>
+
+<h1>İsimler</h1>
+@foreach (var item in (ViewData["names"] as List<string>)!)
+{
+    <p>@item</p>
+}
+<p>@person.id- @person.name- @person.age</p>*@
+
+@*@foreach (var item in Model)
+{
+    <p>@item.Id</p>
+    <p>@item.Name</p>
+}*@
+
+
